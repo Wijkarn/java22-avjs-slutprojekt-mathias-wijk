@@ -4,12 +4,13 @@ import Navbar from "./Navbar/Navbar";
 import Productcontainer from "./Productcontainer/Productcontainer";
 
 export default function App() {
+    const [cart, setCart] = useState([]);
 
     return (
         <>
-            <Navbar />
+            <Navbar cart={cart}/>
 
-            <Productcontainer/>
+            <Productcontainer setCart={setCart} cart={cart}/>
         </>
 
     );

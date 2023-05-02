@@ -4,20 +4,19 @@ export default function Filterbutton({ themes, setTheme }) {
         event.preventDefault();
 
         const formData = new FormData(event.target);
-
         const formJson = Object.fromEntries(formData.entries());
-        // console.log(formJson.sort);
+        const formSorted = formJson.sort;
 
-        setTheme(formJson.sort)
+        console.log(formSorted)
+        setTheme(formSorted);
 
-        // console.log(event.target);
     }
 
     return (
         <form onSubmit={handleSubmit}>
             <select name="sort">
                 <option value="All">All</option>
-                {Object.keys(themes).map(theme => <option key={theme}>{theme}</option>)}
+                {themes.map(theme => <option key={theme}>{theme}</option>)}
             </select>
             <button className="filter-button">Filter</button>
         </form>
