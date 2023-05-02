@@ -1,6 +1,6 @@
 export default function ProductCard({ title, price, theme, pieces, imgSrc, itemId, stock}) {
 
-    console.log(theme)
+    // console.log(title, price, theme, pieces, imgSrc, itemId, stock)
 
     return (
         <div className="item-card" key={itemId}>
