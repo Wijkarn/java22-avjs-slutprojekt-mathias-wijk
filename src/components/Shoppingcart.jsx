@@ -1,8 +1,12 @@
 import "../css/Shoppingcart.css";
 
-export default function Shoppingcart({ cart, setCart, setShowCart }) {
+export default function Shoppingcart({ cart, setCart, setShowCart, newCartItem, setNewCartItem }) {
 
-    console.log(cart);
+    let totalAmount = 0;
+
+    cart.map(product => {
+        totalAmount += (product.inCart * product.price);
+    });
 
     function handleCheckout() {
         if (cart.length > 0) {
@@ -23,16 +27,14 @@ export default function Shoppingcart({ cart, setCart, setShowCart }) {
         setCart([]);
     }
 
-    const testAmount = 4000;
-
     return (
         <div id="shopping-cart">
             <div id="cart">
-                {cart.map(product => <div key={product.itemId} className="cart-item"><img className="cart-item-img" src={product.imgSrc} />{product.itemId} <span>{product.title}</span><span>{product.inCart}</span></div>)}
+                {cart.map(product => <div key={product.itemId} className="cart-item"><div><img className="cart-item-img" src={product.imgSrc} />{product.itemId} <span className="product-title">{product.title}</span><span>{product.inCart * product.price} kr</span></div><span className="produc-amount">Qty: {product.inCart}</span></div>)}
             </div>
             <div id="order">
                 <h2>Order summary</h2>
-                <h4>Total: {testAmount} kr</h4>
+                <h4>Total: {totalAmount} kr</h4>
                 <button className="order-btn" onClick={handleCheckout}>Checkout</button>
                 <button className="order-btn" onClick={handleContinue}>Continue Shopping</button>
                 <button className="order-btn" onClick={handleEmpty}>Empty Cart</button>

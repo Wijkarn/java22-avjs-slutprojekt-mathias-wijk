@@ -9,9 +9,9 @@ export default function Navbuttons({setShowCart}) {
     return (
         <div>
             <img id="logo" onClick={handeClick} src={logoImg} />
-            <a href=" " onClick={handeClick}>Shop</a>
-            <a href=" ">Discover</a>
-            <a href=" ">Help</a>
+            <a href="#" onClick={handeClick}>Shop</a>
+            <a href="#">Discover</a>
+            <a href="#">Help</a>
         </div>
     );
 }

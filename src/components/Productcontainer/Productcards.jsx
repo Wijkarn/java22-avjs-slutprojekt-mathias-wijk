@@ -1,8 +1,6 @@
-export default function ProductCard({ title, price, theme, pieces, imgSrc, itemId, stock, setCart, cart }) {
+export default function ProductCard({ title, price, theme, pieces, imgSrc, itemId, stock, setNewCartItem }) {
 
     function handleClick() {
-
-        let newCart = [...cart];
 
         const newCartItem = {
             title: title,
@@ -14,35 +12,7 @@ export default function ProductCard({ title, price, theme, pieces, imgSrc, itemI
             inCart: 1
         }
 
-        let newItem = true;
-        let firstItem = true;
-
-        if(cart.length != 0){
-            cart.map(product =>{
-                if(product.itemId === newCartItem.itemId){
-                    product.inCart++;
-                    console.log("Old item");
-                    newItem = false;
-                }
-            });
-        }
-        else{
-            console.log("First item");
-            firstItem = false;
-            newCart.push(newCartItem);
-        }
-
-        if(newItem && firstItem){
-            console.log("New item")
-            newCart.push(newCartItem);
-        }
-
-        console.log(cart)
-
-        // newCart.push(newCartItem);
-
-        // console.log(newCart)
-        setCart(newCart);
+        setNewCartItem(newCartItem);
     }
 
     return (

@@ -1,9 +1,12 @@
-
 export default function Navbarcart({ cart , setShowCart}) {
 
-    function handeClick(){
-        console.log("NavbarCart:" , cart);
+    let cartItems = 0;
 
+    cart.map(product =>{
+        cartItems += product.inCart;
+    });
+
+    function handeClick(){
         setShowCart(true);
     }
 
@@ -15,7 +18,7 @@ export default function Navbarcart({ cart , setShowCart}) {
                     <path d="M2.46 6.33c-.269 0-.489.194-.5.441L1.435 18.19a.436.436 0 00.131.332.52.52 0 00.348.149h12.151c.276 0 .501-.207.501-.462l-.525-11.436c-.011-.248-.23-.442-.5-.442H2.46zM14.448 20l-12.974-.001a1.591 1.591 0 01-1.064-.462 1.357 1.357 0 01-.408-1.03L.56 6.372C.595 5.602 1.277 5 2.11 5h11.78c.835 0 1.516.602 1.551 1.372l.56 12.197c0 .789-.697 1.431-1.553 1.431z"></path>
                 </g>
             </svg>
-            <span>{cart.length}</span>
+            <span>{cartItems}</span>
         </a>
     );
 }

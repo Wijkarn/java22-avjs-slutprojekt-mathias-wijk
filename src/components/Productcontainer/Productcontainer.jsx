@@ -3,7 +3,7 @@ import Filterbutton from "./Filterbutton";
 import "../../css/Productcontainer.css";
 import { useEffect, useState } from 'react';
 
-export default function Productcontainer({ setCart, cart, showCart, setShowCart }) {
+export default function Productcontainer({ setCart, cart, showCart, setShowCart , setNewCartItem}) {
     const [products, setProducts] = useState({});
     const [theme, setTheme] = useState("All");
     const [allThemes, setAllThemes] = useState([]);
@@ -22,7 +22,7 @@ export default function Productcontainer({ setCart, cart, showCart, setShowCart 
     }
 
     useEffect(() => {
-        getProducts(theme);
+        getProducts();
     }, []
     );
 
@@ -30,8 +30,8 @@ export default function Productcontainer({ setCart, cart, showCart, setShowCart 
         <>
             <Filterbutton themes={allThemes} setTheme={setTheme} />
             <div className="item-container">
-                {theme === "All" && Object.keys(products).map(key => products[key].map(product => <ProductCard key={product.itemId} title={product.title} theme={key} pieces={product.pieces} price={product.price} imgSrc={product.imgSrc} itemId={product.itemId} stock={product.stock} setCart={setCart} cart={cart} />))}
-                {theme !== "All" && products[theme].map(product => <ProductCard key={product.itemId} title={product.title} theme={theme} pieces={product.pieces} price={product.price} imgSrc={product.imgSrc} itemId={product.itemId} stock={product.stock} setCart={setCart} cart={cart} />)}
+                {theme === "All" && Object.keys(products).map(key => products[key].map(product => <ProductCard key={product.itemId} title={product.title} theme={key} pieces={product.pieces} price={product.price} imgSrc={product.imgSrc} itemId={product.itemId} stock={product.stock} setNewCartItem={setNewCartItem} />))}
+                {theme !== "All" && products[theme].map(product => <ProductCard key={product.itemId} title={product.title} theme={theme} pieces={product.pieces} price={product.price} imgSrc={product.imgSrc} itemId={product.itemId} stock={product.stock} setNewCartItem={setNewCartItem}/>)}
             </div>
         </>
     );

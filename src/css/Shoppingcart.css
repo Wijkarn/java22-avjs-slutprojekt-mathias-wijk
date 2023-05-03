@@ -8,13 +8,13 @@
 }
 
 #cart {
-    width: 70%;
+    width: 75%;
     margin: 0;
 }
 
 #order {
     margin: 0;
-    width: 30%;
+    width: 25%;
     text-align: center;
     height: fit-content;
     display: flex;
@@ -34,6 +34,12 @@
     display: flex;
     align-items: center;
     border-radius: 1em;
+    justify-content: space-between;
+}
+
+.cart-item div{
+    display: flex;
+    align-items: center;
 }
 
 .cart-item-img {
@@ -44,4 +50,12 @@
     padding: 1em;
     background-color: rgb(255 207 0);
     border-radius: 1em;
+}
+
+.product-title{
+    max-width: 25%;
+}
+
+.product-amount{
+    margin-right: 0;
 }

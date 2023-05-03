@@ -7,7 +7,7 @@ export default function Filterbutton({ themes, setTheme }) {
         const formJson = Object.fromEntries(formData.entries());
         const formSorted = formJson.sort;
 
-        console.log(formSorted)
+        // console.log(formSorted)
         setTheme(formSorted);
 
     }
