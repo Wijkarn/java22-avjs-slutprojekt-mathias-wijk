@@ -1,11 +1,14 @@
 
-export default function Navbarcart({ cart }) {
+export default function Navbarcart({ cart , setShowCart}) {
 
-    // console.log(typeof cart)
-    console.log(cart)
+    function handeClick(){
+        console.log("NavbarCart:" , cart);
+
+        setShowCart(true);
+    }
 
     return (
-        <a href="#">
+        <a href="#" onClick={handeClick}>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="20" viewBox="0 0 16 20" aria-hidden="true">
                 <g fill="currentColor" fillRule="evenodd">
                     <path d="M4 3.512v5.804c0 .377.349.684.779.684.43 0 .779-.307.779-.684V3.512C5.558 2.33 6.653 1.368 8 1.368c1.347 0 2.442.962 2.442 2.144v5.804c0 .377.35.684.78.684.43 0 .778-.307.778-.684V3.512C12 1.575 10.206 0 8 0S4 1.575 4 3.512z"></path>

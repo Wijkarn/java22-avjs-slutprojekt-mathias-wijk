@@ -4,3 +4,14 @@
     outline: 0;
     padding: 0;
 }
+
+main {
+    width: 80%;
+    margin-inline: auto;
+    height: fit-content;
+    margin-top: 2%;
+}
+
+button:hover{
+    cursor: pointer;
+}
