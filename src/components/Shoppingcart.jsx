@@ -11,10 +11,11 @@ export default function Shoppingcart({ cart, setCart, setShowCart, newCartItem, 
     function handleCheckout() {
         if (cart.length > 0) {
             alert("Thank you for your purchase!");
+            patchTooFirebase();
             setCart([]);
             setShowCart(false);
         }
-        else{
+        else {
             alert("Your cart is empty!");
         }
     }
@@ -25,6 +26,39 @@ export default function Shoppingcart({ cart, setCart, setShowCart, newCartItem, 
 
     function handleEmpty() {
         setCart([]);
+    }
+
+    async function patchTooFirebase() {
+        console.log(cart)
+
+        let patchCart = [...cart];
+
+        let obj = {};
+
+        patchCart.forEach(key => {
+            obj[key.theme] = [];
+        })
+
+        patchCart.forEach(key => {
+            console.log("key", key);
+
+            obj[key.theme].push({ itemId: key.itemId, stock: key.stock - key.inCart, title: key.title, pieces: key.pieces, price: key.price, imgSrc: key.imgSrc });
+
+        })
+
+        console.log(obj)
+
+        const url = `https://java22legoshop-default-rtdb.europe-west1.firebasedatabase.app/old/.json`;
+
+        const options = {
+            method: "PATCH",
+            body: JSON.stringify(obj),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        }
+
+        fetch(url, options);
     }
 
     return (

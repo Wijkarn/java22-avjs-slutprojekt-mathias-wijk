@@ -9,7 +9,7 @@ export default function Productcontainer({ setCart, cart, showCart, setShowCart 
     const [allThemes, setAllThemes] = useState([]);
 
     async function getProducts() {
-        const res = await fetch(`https://java22legoshop-default-rtdb.europe-west1.firebasedatabase.app/.json`);
+        const res = await fetch(`https://java22legoshop-default-rtdb.europe-west1.firebasedatabase.app/old/.json`);
         const data = await res.json();
         let array = [];
 

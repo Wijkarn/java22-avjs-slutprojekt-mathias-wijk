@@ -1,3 +1,5 @@
+import Productpage from "./Productmodal";
+
 export default function ProductCard({ title, price, theme, pieces, imgSrc, itemId, stock, setNewCartItem }) {
 
     function handleClick() {
@@ -9,16 +11,24 @@ export default function ProductCard({ title, price, theme, pieces, imgSrc, itemI
             imgSrc: imgSrc,
             itemId: itemId,
             stock: stock,
+            pieces: pieces,
             inCart: 1
         }
 
         setNewCartItem(newCartItem);
     }
 
+    function handleModal(){
+        // const modal = document.getElementById(itemId);
+
+        // modal.showModal();
+    }
+
     return (
         <div className="item-card" key={itemId}>
             <img src={imgSrc} />
-            <a href=" ">{itemId} {title}</a>
+            <span onClick={handleModal} className="hover">{itemId} {title}</span>
+            {/* <Productpage title={title} theme={theme} pieces={pieces} price={price} imgSrc={imgSrc} itemId={itemId} stock={stock}/> */}
             <span className="item-price">{price} kr</span>
             <span className="pieces">{pieces} pcs</span>
             <span>Theme: {theme}</span>

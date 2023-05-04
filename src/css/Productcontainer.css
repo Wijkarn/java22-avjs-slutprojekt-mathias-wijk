@@ -68,3 +68,15 @@ select {
         width: 90%;
     }
 }
+
+dialog{
+    border: 1px solid blue;
+}
+
+.hover:hover{
+    cursor: pointer;
+}
+
+img.dialog-page{
+    max-width: 300px;
+}
