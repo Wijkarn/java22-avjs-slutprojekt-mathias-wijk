@@ -10,7 +10,6 @@ export default function App() {
     const [newCartItem, setNewCartItem] = useState({});
 
     useEffect(() => {
-        // console.log(newCartItem);
         if (newCartItem.itemId != undefined) {
             let newCart = [...cart];
 
@@ -20,17 +19,17 @@ export default function App() {
             cart.map(product => {
                 if (product.itemId === newCartItem.itemId) {
                     product.inCart++;
-                    console.log("Old item");
+                    // console.log("Old item");
                     newItem = false;
                 }
             });
 
             if (newItem && firstItem) {
-                console.log("New item")
+                // console.log("New item")
                 newCart.push(newCartItem);
             }
 
-            console.log(newCart)
+            // console.log(newCart)
             setCart(newCart);
         }
 

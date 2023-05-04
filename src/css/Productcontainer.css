@@ -49,7 +49,7 @@ select {
     width: fit-content;
 }
 
-.filter-button{
+.filter-button {
     padding: 1em;
     border-radius: 1em;
     margin-left: 1em;
@@ -63,8 +63,8 @@ select {
 }
 
 @media only screen and (max-width: 750px) {
-    .item-card{
+    .item-card {
         max-width: none;
         width: 90%;
     }
-  }
+}
