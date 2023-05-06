@@ -12,7 +12,7 @@ export default function Productcontainer({setNewCartItem }) {
         const res = await fetch(`https://java22legoshop-default-rtdb.europe-west1.firebasedatabase.app/new/.json`);
         const data = await res.json();
 
-        console.log(data);
+        // console.log(data);
 
         const themeArray = Object.keys(data);
 

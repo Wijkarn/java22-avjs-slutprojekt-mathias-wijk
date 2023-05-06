@@ -5,7 +5,7 @@ export default function ProductCard({ title, price, theme, pieces, imgSrc, itemI
     let stockClass;
     let button;
 
-    function handleClick(event) {
+    function handleClick() {
 
         if (currentStock > 0) {
             const newCartItem = {
@@ -21,8 +21,6 @@ export default function ProductCard({ title, price, theme, pieces, imgSrc, itemI
             setCurrentStock(currentStock - 1);
 
             setNewCartItem(newCartItem);
-
-            if (currentStock - 1 == 0) event.target.disabled = true;
         }
     }
 
@@ -44,7 +42,7 @@ export default function ProductCard({ title, price, theme, pieces, imgSrc, itemI
             <span className="pieces">{pieces} pcs</span>
             <span>Theme: {theme}</span>
             <span>Stock: {currentStock}</span>
-            <button onClick={handleClick} className="add-to-cart-btn">{button}</button>
+            <button onClick={handleClick} disabled={!currentStock} className="add-to-cart-btn">{button}</button>
         </div>
     );
 }
