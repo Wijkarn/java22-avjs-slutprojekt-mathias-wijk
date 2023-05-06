@@ -29,36 +29,76 @@ export default function Shoppingcart({ cart, setCart, setShowCart, newCartItem, 
     }
 
     async function patchTooFirebase() {
-        console.log(cart)
+        // console.log(cart)
 
         let patchCart = [...cart];
 
-        let obj = {};
+        const obj = {};
+
+        // patchCart.map(key => {
+        //     // obj[key.theme] = {};
+        // })
 
         patchCart.forEach(key => {
-            obj[key.theme] = [];
-        })
+            // console.log("key", key);
+            // Object.hasOwn(obj, key.theme)
 
-        patchCart.forEach(key => {
-            console.log("key", key);
+            // obj[key.theme][key.itemId] = {stock: key.stock - key.inCart, title: key.title, pieces: key.pieces, price: key.price, imgSrc: key.imgSrc };
 
-            obj[key.theme].push({ itemId: key.itemId, stock: key.stock - key.inCart, title: key.title, pieces: key.pieces, price: key.price, imgSrc: key.imgSrc });
-
-        })
-
-        console.log(obj)
-
-        const url = `https://java22legoshop-default-rtdb.europe-west1.firebasedatabase.app/old/.json`;
-
-        const options = {
-            method: "PATCH",
-            body: JSON.stringify(obj),
-            headers: {
-                "Content-type": "application/json; charset=UTF-8"
+            obj[key.theme] = {
+                ...obj[key.theme],
+                [key.itemId]: {
+                    stock: key.stock - key.inCart,
+                    title: key.title,
+                    pieces: key.pieces,
+                    price: key.price,
+                    imgSrc: key.imgSrc
+                }
             }
-        }
 
-        fetch(url, options);
+        })
+
+        console.log(obj);
+
+        // LOOPA IGENOM ALLA THEMES OCH PATCHA VARJE GÅNG
+        for (const theme in obj) {
+            const url = `https://java22legoshop-default-rtdb.europe-west1.firebasedatabase.app/new/${theme}.json`;
+
+            const options = {
+                method: "PUT",
+                body: JSON.stringify(obj[theme]),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            }
+
+            // const test = [...obj[theme]]
+
+            // console.log(obj[theme])
+
+            // for(const product in obj[theme]){
+            //     console.log(obj[theme][product])
+            // }
+
+            console.log(obj[theme]);
+
+            fetch(url, options);
+        }
+        // const url = `https://java22legoshop-default-rtdb.europe-west1.firebasedatabase.app/new/Technic/42083.json`;
+
+        // const options = {
+        //     method: "PUT",
+        //     body: JSON.stringify(
+
+        //     ),
+        //     headers: {
+        //         "Content-type": "application/json; charset=UTF-8"
+        //     }
+        // }
+
+        // fetch(url, options);
+
+        // location.reload();
     }
 
     return (

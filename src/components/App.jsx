@@ -13,28 +13,32 @@ export default function App() {
         if (newCartItem.itemId != undefined) {
             let newCart = [...cart];
 
+            let allowAddToCart = true;
             let newItem = true;
             let firstItem = true;
 
-            cart.map(product => {
-                if (product.itemId === newCartItem.itemId) {
+            cart.forEach(product => {
+                if (product.itemId === newCartItem.itemId && product.stock > product.inCart) {
                     product.inCart++;
-                    // console.log("Old item");
                     newItem = false;
+                }
+                else if (product.itemId === newCartItem.itemId && product.stock <= product.inCart) {
+                    allowAddToCart = false;
+                    alert("We don't have any more of that item!");
                 }
             });
 
             if (newItem && firstItem) {
-                // console.log("New item")
                 newCart.push(newCartItem);
             }
 
-            // console.log(newCart)
-            setCart(newCart);
+            if (allowAddToCart) {
+                setCart(newCart);
+            }
         }
 
     }, [newCartItem]
-    )
+    );
 
     return (
         <>
