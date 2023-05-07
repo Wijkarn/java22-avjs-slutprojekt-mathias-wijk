@@ -1,7 +1,6 @@
 import "../css/Shoppingcart.css";
 
 export default function Shoppingcart({ cart, setCart, setShowCart }) {
-
     let totalAmount = 0;
     let totalCartItems = 0;
 
@@ -70,7 +69,7 @@ export default function Shoppingcart({ cart, setCart, setShowCart }) {
 
             fetch(url, options);
         }
-        
+
         setTimeout(updatePage, 100);
     }
 

@@ -46,8 +46,8 @@ export default function App() {
             <Navbar cart={cart} setShowCart={setShowCart} newCartItem={newCartItem} />
 
             <main>
-                {!showCart ? <Productcontainer setNewCartItem={setNewCartItem} cart={cart}/>
-                : <Shoppingcart setCart={setCart} cart={cart} setShowCart={setShowCart}/>}
+                {!showCart ? <Productcontainer setNewCartItem={setNewCartItem} cart={cart} />
+                    : <Shoppingcart setCart={setCart} cart={cart} setShowCart={setShowCart} />}
             </main>
 
         </>
