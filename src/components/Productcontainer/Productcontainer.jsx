@@ -30,8 +30,25 @@ export default function Productcontainer({ setNewCartItem, cart }) {
             <Filterbutton themes={allThemes} setTheme={setTheme} />
             <div className="item-container">
 
-                {theme === "All" ? Object.keys(products).map(productTheme => Object.keys(products[productTheme]).map(product => <ProductCard key={product} title={products[productTheme][product].title} theme={productTheme} pieces={products[productTheme][product].pieces} price={products[productTheme][product].price} imgSrc={products[productTheme][product].imgSrc} itemId={product} stock={products[productTheme][product].stock} setNewCartItem={setNewCartItem} cart={cart}/>))
-                    : Object.keys(products[theme]).map(product => <ProductCard keys={product + product} title={products[theme][product].title} theme={theme} pieces={products[theme][product].pieces} price={products[theme][product].price} imgSrc={products[theme][product].imgSrc} itemId={product} stock={products[theme][product].stock} setNewCartItem={setNewCartItem} cart={cart}/>)}
+                {/* Loops through all themes and displays all items*/}
+                {theme === "All" ? Object.keys(products).map(productTheme => {
+                    {/* Loops through all products in all themes */ }
+                    return (
+                        Object.keys(products[productTheme]).map(product => {
+                            {/* Sends all props to PropductCard component */ }
+                            return (
+                                <ProductCard key={product} title={products[productTheme][product].title} theme={productTheme} pieces={products[productTheme][product].pieces} price={products[productTheme][product].price} imgSrc={products[productTheme][product].imgSrc} itemId={product} stock={products[productTheme][product].stock} setNewCartItem={setNewCartItem} cart={cart} />
+                            );
+                        })
+                    );
+                })
+                    :
+                    Object.keys(products[theme]).map(product => {
+                        return (
+                            <ProductCard keys={product + product} title={products[theme][product].title} theme={theme} pieces={products[theme][product].pieces} price={products[theme][product].price} imgSrc={products[theme][product].imgSrc} itemId={product} stock={products[theme][product].stock} setNewCartItem={setNewCartItem} cart={cart} />
+                        );
+                    }
+                    )}
 
             </div>
         </>
