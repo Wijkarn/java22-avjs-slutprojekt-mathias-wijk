@@ -51,7 +51,7 @@ export default function ProductCard({ title, price, theme, pieces, imgSrc, itemI
             <span className="item-price">{price} kr</span>
             <span className="pieces">{pieces} pcs</span>
             <span>Theme: {theme}</span>
-            <span>Stock: {currentStock < stock ? currentStock : stock}</span>
+            <span>Stock: {currentStock}</span>
             <button onClick={handleClick} disabled={!currentStock} className="add-to-cart-btn">{button}</button>
         </div>
     );
