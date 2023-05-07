@@ -1,7 +1,17 @@
 import { useState } from "react";
 
-export default function ProductCard({ title, price, theme, pieces, imgSrc, itemId, stock, setNewCartItem }) {
-    const [currentStock, setCurrentStock] = useState(stock);
+export default function ProductCard({ title, price, theme, pieces, imgSrc, itemId, stock, setNewCartItem, cart }) {
+    let tempStock = stock;
+
+    if (cart.length != 0) {
+        cart.forEach(product => {
+            if (product.itemId == itemId) {
+                tempStock = stock - product.inCart;
+            }
+        });
+    }
+
+    const [currentStock, setCurrentStock] = useState(tempStock);
     let stockClass;
     let button;
 
@@ -41,7 +51,7 @@ export default function ProductCard({ title, price, theme, pieces, imgSrc, itemI
             <span className="item-price">{price} kr</span>
             <span className="pieces">{pieces} pcs</span>
             <span>Theme: {theme}</span>
-            <span>Stock: {currentStock}</span>
+            <span>Stock: {currentStock < stock ? currentStock : stock}</span>
             <button onClick={handleClick} disabled={!currentStock} className="add-to-cart-btn">{button}</button>
         </div>
     );

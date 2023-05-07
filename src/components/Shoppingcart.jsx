@@ -10,8 +10,6 @@ export default function Shoppingcart({ cart, setCart, setShowCart}) {
         totalCartItems += product.inCart;
     });
 
-    console.log(totalCartItems)
-
     function handleCheckout() {
         if (cart.length > 0) {
             alert("Thank you for your purchase!");
@@ -61,14 +59,15 @@ export default function Shoppingcart({ cart, setCart, setShowCart}) {
             const url = `https://java22legoshop-default-rtdb.europe-west1.firebasedatabase.app/new/${theme}.json`;
 
             const options = {
-                method: "PUT",
+                method: "PATCH",
                 body: JSON.stringify(obj[theme]),
                 headers: {
                     "Content-type": "application/json; charset=UTF-8"
                 }
             }
 
-            console.log(obj[theme]);
+            // console.log(options);
+            // console.log(obj[theme]);
 
             fetch(url, options);
         }

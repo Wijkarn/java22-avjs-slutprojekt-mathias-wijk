@@ -94,7 +94,6 @@ img.dialog-page {
     border: 3px solid red;
     padding: 20px;
     position: relative;
-    /* float: left; */
     transform: rotate(-45deg);
     left: 7%;
     top:3em;
