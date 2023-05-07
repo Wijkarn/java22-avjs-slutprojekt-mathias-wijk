@@ -58,7 +58,7 @@ export default function Shoppingcart({ cart, setCart, setShowCart }) {
 
         // Loops through all themes and makes a patch for each theme
         for (const theme in obj) {
-            const url = `https://java22legoshop-default-rtdb.europe-west1.firebasedatabase.app/new/${theme}.json`;
+            const url = `https://java22legoshop-default-rtdb.europe-west1.firebasedatabase.app/${theme}/.json`;
 
             const options = {
                 method: "PATCH",
@@ -70,6 +70,12 @@ export default function Shoppingcart({ cart, setCart, setShowCart }) {
 
             fetch(url, options);
         }
+        
+        setTimeout(updatePage, 100);
+    }
+
+    function updatePage(){
+        location.reload();
     }
 
     return (

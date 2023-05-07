@@ -10,6 +10,7 @@ export default function App() {
     const [newCartItem, setNewCartItem] = useState({});
 
     useEffect(() => {
+        // Adds new item to cart
         if (newCartItem.itemId != undefined) {
             let newCart = [...cart];
 
@@ -17,6 +18,7 @@ export default function App() {
             let newItem = true;
             let firstItem = true;
 
+            // checks if item already exist
             cart.forEach(product => {
                 if (product.itemId === newCartItem.itemId && product.stock > product.inCart) {
                     product.inCart++;
