@@ -8,11 +8,10 @@ export default function Productcontainer({ setNewCartItem, cart }) {
     const [theme, setTheme] = useState("All");
     const [allThemes, setAllThemes] = useState([]);
 
+    // Gets all products from firebase
     async function getProducts() {
         const res = await fetch(`https://java22legoshop-default-rtdb.europe-west1.firebasedatabase.app/new/.json`);
         const data = await res.json();
-
-        // console.log(data);
 
         const themeArray = Object.keys(data);
 
@@ -25,7 +24,6 @@ export default function Productcontainer({ setNewCartItem, cart }) {
         getProducts();
     }, []
     );
-
 
     return (
         <>

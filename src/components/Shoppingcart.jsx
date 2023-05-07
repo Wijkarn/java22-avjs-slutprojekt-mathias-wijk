@@ -1,16 +1,18 @@
 import "../css/Shoppingcart.css";
 
-export default function Shoppingcart({ cart, setCart, setShowCart}) {
+export default function Shoppingcart({ cart, setCart, setShowCart }) {
 
     let totalAmount = 0;
     let totalCartItems = 0;
 
+    // Calculates have many cart items and total price
     cart.forEach(product => {
         totalAmount += (product.inCart * product.price);
         totalCartItems += product.inCart;
     });
 
     function handleCheckout() {
+        // Checks if something is in the cart
         if (cart.length > 0) {
             alert("Thank you for your purchase!");
             patchTooFirebase();
@@ -22,25 +24,25 @@ export default function Shoppingcart({ cart, setCart, setShowCart}) {
         }
     }
 
+    // Continue shopping
     function handleContinue() {
         setShowCart(false);
     }
 
+    // Empty cart
     function handleEmpty() {
         setCart([]);
         setShowCart(false);
     }
 
+    // Updates the database
     async function patchTooFirebase() {
-
         let patchCart = [...cart];
-
-        console.log(patchCart);
 
         const obj = {};
 
+        // Loops through all products and sort them by theme
         patchCart.forEach(product => {
-
             obj[product.theme] = {
                 ...obj[product.theme],
                 [product.itemId]: {
@@ -66,12 +68,8 @@ export default function Shoppingcart({ cart, setCart, setShowCart}) {
                 }
             }
 
-            // console.log(options);
-            // console.log(obj[theme]);
-
             fetch(url, options);
         }
-        
     }
 
     return (

@@ -6,7 +6,8 @@ export default function Navbarcart({ cart , setShowCart}) {
         cartItems += product.inCart;
     });
 
-    function handeClick(){
+    function handeClick(event){
+        event.preventDefault();
         setShowCart(true);
     }
 
