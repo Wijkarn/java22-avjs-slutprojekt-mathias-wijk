@@ -38,12 +38,12 @@ export default function Shoppingcart({ cart, setCart, setShowCart }) {
     async function patchTooFirebase() {
         let patchCart = [...cart];
 
-        const obj = {};
+        const productsObject = {};
 
         // Loops through all products and sort them by theme
         patchCart.forEach(product => {
-            obj[product.theme] = {
-                ...obj[product.theme],
+            productsObject[product.theme] = {
+                ...productsObject[product.theme],
                 [product.itemId]: {
                     stock: product.stock - product.inCart,
                     title: product.title,
@@ -56,12 +56,12 @@ export default function Shoppingcart({ cart, setCart, setShowCart }) {
         });
 
         // Loops through all themes and makes a patch for each theme
-        for (const theme in obj) {
+        for (const theme in productsObject) {
             const url = `https://java22legoshop-default-rtdb.europe-west1.firebasedatabase.app/${theme}/.json`;
 
             const options = {
                 method: "PATCH",
-                body: JSON.stringify(obj[theme]),
+                body: JSON.stringify(productsObject[theme]),
                 headers: {
                     "Content-type": "application/json; charset=UTF-8"
                 }
@@ -73,7 +73,7 @@ export default function Shoppingcart({ cart, setCart, setShowCart }) {
         setTimeout(updatePage, 100);
     }
 
-    function updatePage(){
+    function updatePage() {
         location.reload();
     }
 
