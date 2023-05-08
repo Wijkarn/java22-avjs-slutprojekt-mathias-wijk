@@ -19,7 +19,7 @@ export default function Shoppingcart({ cart, setCart, setShowCart }) {
             setShowCart(false);
         }
         else {
-            alert("Your cart is empty!");
+            alert("Your cart is already empty!");
         }
     }
 
@@ -53,7 +53,6 @@ export default function Shoppingcart({ cart, setCart, setShowCart }) {
                 }
                 
             }
-            console.log(product);
 
         });
 
@@ -71,7 +70,6 @@ export default function Shoppingcart({ cart, setCart, setShowCart }) {
             
             fetch(url, options);
         }
-        console.log(productsObject)
 
         setTimeout(updatePage, 300);
     }
