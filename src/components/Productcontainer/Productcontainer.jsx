@@ -1,5 +1,6 @@
 import ProductCard from "./Productcard";
 import Filterbutton from "./Filterbutton";
+import SortButton from "./Sortbutton";
 import "../../css/Productcontainer.css";
 import { useEffect, useState } from 'react';
 
@@ -11,13 +12,33 @@ export default function Productcontainer({ setNewCartItem, cart }) {
     // Gets all products from firebase
     async function getProducts() {
         const res = await fetch(`https://java22legoshop-default-rtdb.europe-west1.firebasedatabase.app/.json`);
-        const data = await res.json();
 
-        const themeArray = Object.keys(data);
+        if (res.status == 200) {
+            const data = await res.json();
 
-        setProducts(data);
+            const themeArray = Object.keys(data);
 
-        setAllThemes(themeArray);
+            const productsArray = [];
+            Object.keys(data).map(themes => {
+                Object.keys(data[themes]).map(product => {
+                    productsArray.push(
+                        {
+                            itemId: product,
+                            theme: themes,
+                            imgSrc: data[themes][product].imgSrc,
+                            title: data[themes][product].title,
+                            pieces: data[themes][product].pieces,
+                            price: data[themes][product].price,
+                            stock: data[themes][product].stock
+                        }
+                    )
+                })
+            });
+
+            setProducts(productsArray);
+
+            setAllThemes(themeArray);
+        }
     }
 
     useEffect(() => {
@@ -27,31 +48,14 @@ export default function Productcontainer({ setNewCartItem, cart }) {
 
     return (
         <>
-            <Filterbutton themes={allThemes} setTheme={setTheme} />
+            <div id="filter-sort-buttons">
+                <Filterbutton themes={allThemes} setTheme={setTheme} />
+                <SortButton products={products} setProducts={setProducts} />
+            </div>
             <div className="item-container">
 
-                {/* Loops through all themes and displays all items*/}
-                {theme === "All" ? Object.keys(products).map(productTheme => {
-                    {/* Loops through all products in all themes */ }
-                    return (
-                        Object.keys(products[productTheme]).map(product => {
-                            {/* Sends all props to PropductCard component */ }
-                            return (
-                                <ProductCard key={product} title={products[productTheme][product].title} theme={productTheme} pieces={products[productTheme][product].pieces} price={products[productTheme][product].price} imgSrc={products[productTheme][product].imgSrc} itemId={product} stock={products[productTheme][product].stock} setNewCartItem={setNewCartItem} cart={cart} />
-                            );
-                        })
-                    );
-                })
-                    : (
-                        {/* Loops through all item in specified theme */ },
-                        Object.keys(products[theme]).map(product => {
-                            {/* Sends all props to PropductCard component */}
-                            return (
-                                <ProductCard keys={product + product} title={products[theme][product].title} theme={theme} pieces={products[theme][product].pieces} price={products[theme][product].price} imgSrc={products[theme][product].imgSrc} itemId={product} stock={products[theme][product].stock} setNewCartItem={setNewCartItem} cart={cart} />
-                            );
-                        }
-                        )
-                    )}
+                {theme === "All" ? products.map(product => <ProductCard key={product.itemId} stock={product.stock} title={product.title} itemId={product.itemId} imgSrc={product.imgSrc} price={product.price} pieces={product.pieces} theme={product.theme} setNewCartItem={setNewCartItem} cart={cart} />)
+                    : products.map(product => product.theme === theme && <ProductCard key={product.itemId} stock={product.stock} title={product.title} itemId={product.itemId} imgSrc={product.imgSrc} price={product.price} pieces={product.pieces} theme={product.theme} setNewCartItem={setNewCartItem} cart={cart} />)}
 
             </div>
         </>

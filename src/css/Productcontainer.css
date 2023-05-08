@@ -42,10 +42,10 @@ select {
     width: fit-content;
 }
 
-.filter-button {
+.sort-filter-button {
     padding: 1em;
     border-radius: 1em;
-    margin-left: 1em;
+    margin-left: .5em;
     border: 1px solid rgb(204, 204, 204);
 }
 
@@ -69,6 +69,14 @@ select {
 
 .img-out-of-stock{
     opacity: 0.5;
+}
+
+#filter-sort-buttons{
+    display: flex;
+}
+
+form{
+    margin-left: 0.5em;
 }
 
 @media only screen and (max-width: 1000px) {

@@ -51,7 +51,9 @@ export default function Shoppingcart({ cart, setCart, setShowCart }) {
                     price: product.price,
                     imgSrc: product.imgSrc
                 }
+                
             }
+            console.log(product);
 
         });
 
@@ -66,11 +68,12 @@ export default function Shoppingcart({ cart, setCart, setShowCart }) {
                     "Content-type": "application/json; charset=UTF-8"
                 }
             }
-
+            
             fetch(url, options);
         }
+        console.log(productsObject)
 
-        setTimeout(updatePage, 100);
+        setTimeout(updatePage, 300);
     }
 
     function updatePage() {
