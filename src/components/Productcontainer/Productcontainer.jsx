@@ -18,6 +18,7 @@ export default function Productcontainer({ setNewCartItem, cart }) {
 
             const themeArray = Object.keys(data);
 
+            // adds all products to an array
             const productsArray = [];
             Object.keys(data).map(themes => {
                 Object.keys(data[themes]).map(product => {
@@ -53,7 +54,7 @@ export default function Productcontainer({ setNewCartItem, cart }) {
                 <SortButton products={products} setProducts={setProducts} />
             </div>
             <div className="item-container">
-
+                {/* loops through product array to create item cards */}
                 {theme === "All" ? products.map(product => <ProductCard key={product.itemId} stock={product.stock} title={product.title} itemId={product.itemId} imgSrc={product.imgSrc} price={product.price} pieces={product.pieces} theme={product.theme} setNewCartItem={setNewCartItem} cart={cart} />)
                     : products.map(product => product.theme === theme && <ProductCard key={product.itemId} stock={product.stock} title={product.title} itemId={product.itemId} imgSrc={product.imgSrc} price={product.price} pieces={product.pieces} theme={product.theme} setNewCartItem={setNewCartItem} cart={cart} />)}
 
